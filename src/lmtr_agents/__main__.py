@@ -1,4 +1,5 @@
 """Prep __main__.py."""
+
 # pylint: disable=invalid-name
 import sys
 from pathlib import Path
