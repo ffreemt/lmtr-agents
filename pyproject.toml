@@ -1,6 +1,6 @@
 [project]
 name = "lmtr-agents"
-version = "0.1.0a0"
+version = "0.1.0a1"
 description = "Various llm agents (agent_chat, agent_tr, agent_ref, agent_imp, agent_comb) for translation"
 authors = [
     { name = "ffreemt" }
