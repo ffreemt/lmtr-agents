@@ -55,6 +55,8 @@ load_dotenv()
 
 # envs: OR_ NEWAPI
 model, base_url, api_key = [*map(os.getenv, [f"OR_{elm}" for elm in ["MODEL", "BASE_URL", "API_KEY"]])]
+if not all(model, base_url, api_key):
+    model, base_url, api_key = "gpt-4o-mini", "https://litellm.dattw.eu.org/v1", "any"
 MODEL_4OM = ChatOpenAI(model=model, base_url=base_url, api_key=api_key,temperature=.3, verbose=0)
 
 MODEL_DUCK = ChatOpenAI(base_url="https://duck2api.dattw.eu.org/v1", temperature=.3, verbose=0)
@@ -65,7 +67,8 @@ model, base_url, api_key = [*map(os.getenv, [f"NEWAPI_{elm}" for elm in ["MODEL"
 model, base_url, api_key = [*map(os.getenv, [f"LLM_{elm}" for elm in ["MODEL", "BASE_URL", "API_KEY"]])]
 
 # if .env not present or LLM_ model, base_url, api_key no defined
-model, base_url, api_key = "gpt-3.5-turbo", "https://litellm.dattw.eu.org/v1", "any"
+if not all(model, base_url, api_key):
+    model, base_url, api_key = "gpt-3.5-turbo", "https://litellm.dattw.eu.org/v1", "any"
 
 MODEL_GPT3 = ChatOpenAI(model=model, base_url=base_url, api_key=api_key,temperature=.3, verbose=0, name='llm')
 

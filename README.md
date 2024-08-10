@@ -16,7 +16,9 @@ pip install lmtr-agents
 ## Use it
 Example `.env`
 ```
-LM_MODEL=gpt-4o-mini,https://openrouter.ai/api/v1,sk-or-v1-...
+LLM_MODEL=gpt-4o-mini  # or gpt-3.5-turbo
+LLM_BASE_URL=https://openrouter.ai/api/v1
+LLM_API_KEY=sk-or-v1-...
 ```
 
 ```python
