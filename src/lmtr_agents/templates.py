@@ -6,9 +6,7 @@ TEXT into {to_lang}. You translate text into smooth and natural \
 {to_lang} while maintaining the meaning in the original text. \
 You only provide translated text and nothing else.
 
-{text}
-
-{to_lang}: """
+{text}"""
 
 
 # https://huggingface.co/spaces/mikeee/translation-agent-ui/blob/main/src/translation_agent/utils.py
@@ -55,15 +53,65 @@ Only output edited translation and nothing else.
 edited translation: """
 
 template_comb = """\
-Given the below two translations.
+Given the below two translations delimited by XML tags
+<TRANSLATION_1></TRANSLATION_1> and <TRANSLATION_2></TRANSLATION_2> as follows:
 
-Translation 1:
+<TRANSLATION_1>
 {translation1}
+</TRANSLATION_1>
 
-Translation 2:
+<TRANSLATION_2>
 {translation2}
+</TRANSLATION_2>
 
-Combine the two translations coherently without repeating, taking into accont of both translations. Only output combined translation and nothing else.
+Combine and mix the two translations coherently without repeating, taking into accont of both translations. Only output the final combined and mixed translation and nothing else.
 
 Combined translation:
+"""
+
+template_comb_imp = """\
+Given the below two translations and expert suggestions delimited by XML tags
+<TRANSLATION_1></TRANSLATION_1> and <TRANSLATION_2></TRANSLATION_2> <EXPERT_SUGGESTIONS></EXPERT_SUGGESTIONS> as follows:
+
+<TRANSLATION_1>
+{translation1}
+</TRANSLATION_1>
+
+<TRANSLATION_2>
+{translation2}
+</TRANSLATION_2>
+
+<EXPERT_SUGGESTIONS>
+{reflection}
+</EXPERT_SUGGESTIONS>
+
+Combine and mix the two translations coherently without repeating, taking into accont of both translations and EXPERT SUGGESTIONS. Only output the final combined and mixed translation and nothing else.
+
+Final translation:
+"""
+
+template_comb_imp1 = """\
+Given the below source text, two translations and expert suggestions delimited by XML tags
+<SOURCE_TEXT></SOURCE_TEXT>,
+<TRANSLATION_1></TRANSLATION_1> and <TRANSLATION_2></TRANSLATION_2> <EXPERT_SUGGESTIONS></EXPERT_SUGGESTIONS> as follows:
+
+<SOURCE_TEXT>
+{text}
+</SOURCE_TEXT>
+
+<TRANSLATION_1>
+{translation1}
+</TRANSLATION_1>
+
+<TRANSLATION_2>
+{translation2}
+</TRANSLATION_2>
+
+<EXPERT_SUGGESTIONS>
+{reflection}
+</EXPERT_SUGGESTIONS>
+
+Combine and mix the two translations coherently without repeating, taking into accont of both translations and EXPERT SUGGESTIONS. Only output the final combined and mixed translation and nothing else.
+
+Final translation:
 """
